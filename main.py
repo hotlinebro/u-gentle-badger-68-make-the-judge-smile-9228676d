@@ -22,6 +22,9 @@ def main() -> None:
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as f:
         f.write(LINE)
+    # Read it back: the artifact on disk must be exactly the line.
+    with open("/output/entry.txt", encoding="utf-8") as f:
+        assert f.read() == LINE, "entry.txt does not match the line"
 
 
 if __name__ == "__main__":
